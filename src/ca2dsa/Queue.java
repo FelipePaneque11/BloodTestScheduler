@@ -7,8 +7,9 @@ package ca2dsa;
 import java.util.ArrayList;
 
 /**
- *
- * @author paneq
+ * @author Felipe Paneque
+ * student number 23156635
+ * 14/03/2025
  */
 public class Queue implements QueueInterface{
      private ArrayList<Object> queue;

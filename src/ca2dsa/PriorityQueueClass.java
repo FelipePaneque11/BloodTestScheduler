@@ -29,11 +29,11 @@ public class PriorityQueueClass implements PQInterface{
     }
     
     private int findInsertPosition(int newkey){  
-        Patient temp; //create a temp elem to hold the item we find so we can see its key
+        Patient temp; //create a temp patient to hold the item we find so we can see its key
         
         int currPosition = 0; //declare here as this is what we will send back
         for (currPosition = 0; currPosition < thePQueue.size(); currPosition++) {
-            temp = thePQueue.get(currPosition); //store the elem at the current position into temp 
+            temp = thePQueue.get(currPosition); //store the patient at the current position into temp 
             if(temp.getPriorityInt()< newkey){  //compare the priority's
                 break; //if less then quit as you have it, gets returned below
             }

@@ -5,8 +5,9 @@
 package ca2dsa;
 
 /**
- *
- * @author paneq
+ *  @author Felipe Paneque
+ * student number 23156635
+ * 14/03/2025
  */
 public class BloodTestSchedulerApp {
 
@@ -14,6 +15,7 @@ public class BloodTestSchedulerApp {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+        //launching GUI
          BloodTestSchedulerGUI btsGui = new BloodTestSchedulerGUI();
          btsGui.setVisible(true);
     }

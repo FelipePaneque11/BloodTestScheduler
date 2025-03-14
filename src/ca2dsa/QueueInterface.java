@@ -5,8 +5,9 @@
 package ca2dsa;
 
 /**
- *
- * @author paneq
+ * @author Felipe Paneque
+ * student number 23156635
+ * 14/03/2025
  */
 public interface QueueInterface {
     public boolean isEmpty();
