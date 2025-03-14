@@ -38,7 +38,7 @@ public class Queue implements QueueInterface{
     
     @Override
     public void enqueue(Object element){
-        if(queue.size() > 5){
+        if(queue.size() > 4){
             dequeue();
         }
         queue.add((Object)element);

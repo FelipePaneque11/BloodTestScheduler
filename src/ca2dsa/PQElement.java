@@ -96,6 +96,10 @@ public class PQElement {
     public String toString() {
         return "Priority=" + priority + ", age=" + age + ", name=" + name + ", gpDetails=" + gpDetails + ", Comming from other ward ?: " + ward + "\n";
     }
+    
+    public String getBriefDetails() {
+    return "Name: " + name + ", Age: " + age + ",Comming from another ward: " + ward;
+}
 
     public boolean isHaveAttended() {
         return haveAttended;

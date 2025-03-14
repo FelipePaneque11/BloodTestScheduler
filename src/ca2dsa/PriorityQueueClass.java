@@ -80,7 +80,7 @@ public class PriorityQueueClass implements PQInterface{
          return txt;
     }
         
-        public Object nextPatient(){
+        public PQElement nextPatient(){
             return thePQueue.get(0);
         }
 
