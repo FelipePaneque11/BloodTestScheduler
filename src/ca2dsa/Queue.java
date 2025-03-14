@@ -55,6 +55,6 @@ public class Queue implements QueueInterface{
 
     @Override
     public String toString() {
-        return "" + queue;
+        return queue + "\n";
     }
 }

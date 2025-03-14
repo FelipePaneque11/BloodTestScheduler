@@ -13,6 +13,7 @@ import javax.swing.JOptionPane;
 public class BloodTestSchedulerGUI extends javax.swing.JFrame {    
     private final PriorityQueueClass pq;
     private Queue notAttendedQueue = new Queue();
+    private SingleLinkedList attendedPatients = new SingleLinkedList();
     
     public BloodTestSchedulerGUI() {
         initComponents();
@@ -48,6 +49,7 @@ public class BloodTestSchedulerGUI extends javax.swing.JFrame {
         nextPatientBTN = new javax.swing.JButton();
         attendanceBTN = new javax.swing.JButton();
         patientsBTN = new javax.swing.JButton();
+        shownPatientsBTN = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -61,7 +63,7 @@ public class BloodTestSchedulerGUI extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(158, Short.MAX_VALUE)
+                .addContainerGap(169, Short.MAX_VALUE)
                 .addComponent(titleLBL, javax.swing.GroupLayout.PREFERRED_SIZE, 355, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(129, 129, 129))
         );
@@ -98,36 +100,46 @@ public class BloodTestSchedulerGUI extends javax.swing.JFrame {
             }
         });
 
+        shownPatientsBTN.setText("PATIENTS THAT SHOWED UP");
+        shownPatientsBTN.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                shownPatientsBTNActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(196, 196, 196)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(nextPatientBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(attendanceBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(patientsBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap()
+                .addComponent(jScrollPane1)
                 .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGap(47, 47, 47)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(patientsBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(nextPatientBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(57, 57, 57)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(attendanceBTN, javax.swing.GroupLayout.DEFAULT_SIZE, 245, Short.MAX_VALUE)
+                    .addComponent(shownPatientsBTN, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(patientsBTN)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(nextPatientBTN)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
-                .addComponent(attendanceBTN)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(patientsBTN)
+                    .addComponent(attendanceBTN))
                 .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(nextPatientBTN)
+                    .addComponent(shownPatientsBTN))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -150,23 +162,31 @@ public class BloodTestSchedulerGUI extends javax.swing.JFrame {
     private void nextPatientBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextPatientBTNActionPerformed
         // TODO add your handling code here:
         while (!pq.isEmpty()) { // Loop until no more patients
-            PQElement patient = pq.nextPatient(); // Store patient before checking attendance
+            Patient patient = pq.nextPatient(); // Store patient before checking attendance
 
-            int response = JOptionPane.showConfirmDialog(null,"Has the patient " + patient.getBriefDetails() + " attended?", "Confirm Attendance", JOptionPane.YES_NO_OPTION);
+            int response = JOptionPane.showConfirmDialog(null,"Has the patient attended ?" + "\n" + patient.getBriefDetails(), "Confirm Attendance", JOptionPane.YES_NO_OPTION);
             //confirmDialog will return an int and not a boolean, 
             //YES_OPTION will return a 0, making it a true,
             //NO_OPTION will return a 1, making it a false.
             boolean attended = (response == JOptionPane.YES_OPTION);
             if (!attended) {
                 notAttendedQueue.enqueue(patient);
+            } else {
+                int index = attendedPatients.size() + 1;
+                attendedPatients.addPatient(index, patient); //add patient that have attended to the LinkedList
             }
             
-            pq.removePatient(); // Remove patient regardless of attendance
+            pq.removePatient(); // Remove patient from the priorityQueue regardless of attendance
         }
             
         JOptionPane.showMessageDialog(null, "No more patients waiting!");
 
     }//GEN-LAST:event_nextPatientBTNActionPerformed
+
+    private void shownPatientsBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_shownPatientsBTNActionPerformed
+        // TODO add your handling code here:
+        displayTA.setText(attendedPatients.printPatients());
+    }//GEN-LAST:event_shownPatientsBTNActionPerformed
 
     /**
      * @param args the command line arguments
@@ -210,6 +230,7 @@ public class BloodTestSchedulerGUI extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton nextPatientBTN;
     private javax.swing.JButton patientsBTN;
+    private javax.swing.JButton shownPatientsBTN;
     private javax.swing.JLabel titleLBL;
     // End of variables declaration//GEN-END:variables
 }

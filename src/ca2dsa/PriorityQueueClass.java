@@ -11,7 +11,7 @@ import java.util.ArrayList;
  * @author paneq
  */
 public class PriorityQueueClass implements PQInterface{
-    private ArrayList<PQElement> thePQueue; //declare our priority Q arraylist
+    private ArrayList<Patient> thePQueue; //declare our priority Q arraylist
     
     public PriorityQueueClass() {
         thePQueue = new ArrayList<>();    //create our priority Q arraylist
@@ -28,7 +28,7 @@ public class PriorityQueueClass implements PQInterface{
     }
     
     private int findInsertPosition(int newkey){  
-        PQElement temp; //create a temp elem to hold the item we find so we can see its key
+        Patient temp; //create a temp elem to hold the item we find so we can see its key
         
         int currPosition = 0; //declare here as this is what we will send back
         for (currPosition = 0; currPosition < thePQueue.size(); currPosition++) {
@@ -42,8 +42,8 @@ public class PriorityQueueClass implements PQInterface{
     
     @Override
     public void addPatient(int priorityKey, String name, int age, String gpDetails, String ward, boolean haveAttended){
-        //create an instance of PQElement to be added to q from incoming data 
-        PQElement temp = new PQElement(priorityKey, name, age, gpDetails, ward, haveAttended);
+        //create an instance of Patient to be added to q from incoming data 
+        Patient temp = new Patient(priorityKey, name, age, gpDetails, ward, haveAttended);
         //use method to get the index the elem is to be added
         int index = findInsertPosition(priorityKey);
         if (index > size())
@@ -59,17 +59,17 @@ public class PriorityQueueClass implements PQInterface{
     
     @Override
     public String printPatients(){
-        PQElement temp;
+        Patient temp;
         String txt = new String();
         for (int i = 0; i<thePQueue.size(); i++){
             temp = thePQueue.get(i);
-            txt = txt.concat("Priority = "+temp.getPriority()+" | Name= "+temp.getName()+ " | GP details: " + temp.getGpDetails() + " | Comming from other ward ?: " + temp.getWard() + "\n");            
+            txt = txt.concat("Priority = "+temp.getPriority()+" | Name= "+temp.getName()+ " | GP details: " + temp.getGpDetails() + " | Coming from other ward ?: " + temp.getWard() + "| \n");            
         }
          return txt;
     }
     
         public String haveAttended(){
-        PQElement temp;
+        Patient temp;
         String txt = new String();
             for (int i = 0; i<thePQueue.size(); i++){
                 temp = thePQueue.get(i);
@@ -80,7 +80,7 @@ public class PriorityQueueClass implements PQInterface{
          return txt;
     }
         
-        public PQElement nextPatient(){
+        public Patient nextPatient(){
             return thePQueue.get(0);
         }
 

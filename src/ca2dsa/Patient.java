@@ -8,16 +8,16 @@ package ca2dsa;
  *
  * @author paneq
  */
-public class PQElement {
+public class Patient {
     private int priority, age;
     private String name, gpDetails, ward;
     private boolean haveAttended;
 
-    public PQElement() {
+    public Patient() {
     }
 
     
-    public PQElement(int priority, String name,int age, String gpDetails, String ward, boolean haveAttended) {
+    public Patient(int priority, String name,int age, String gpDetails, String ward, boolean haveAttended) {
         this.priority = priority;
         this.name = name;
         this.age = age;
