@@ -10,10 +10,11 @@ package ca2dsa;
  * @author paneq
  */
 public interface PQInterface {
-    public void enqueue(int priority, String name,int age, String gpDetails, String ward, boolean haveAttended);
+    public void addPatient(int priority, String name,int age, String gpDetails, String ward, boolean haveAttended);
     public int size();
     public boolean isEmpty();
-    public Object dequeue();
-    public String printPQueue();
+    public Object removePatient();
+    public Object nextPatient();
+    public String printPatients();
 
 }

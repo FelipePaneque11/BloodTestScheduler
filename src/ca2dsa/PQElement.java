@@ -16,11 +16,6 @@ public class PQElement {
     public PQElement() {
     }
 
-    public PQElement(String name, int age, boolean haveAttended) {
-        this.name = name;
-        this.age = age;
-        this.haveAttended = haveAttended;
-    }
     
     public PQElement(int priority, String name,int age, String gpDetails, String ward, boolean haveAttended) {
         this.priority = priority;
@@ -99,7 +94,7 @@ public class PQElement {
     
     @Override
     public String toString() {
-        return "PQElement{" + "priority=" + priority + ", age=" + age + ", name=" + name + ", gpDetails=" + gpDetails + ", ward=" + ward + '}';
+        return "Priority=" + priority + ", age=" + age + ", name=" + name + ", gpDetails=" + gpDetails + ", Comming from other ward ?: " + ward + "\n";
     }
 
     public boolean isHaveAttended() {

@@ -41,7 +41,7 @@ public class PriorityQueueClass implements PQInterface{
     }
     
     @Override
-    public void enqueue(int priorityKey, String name, int age, String gpDetails, String ward, boolean haveAttended){
+    public void addPatient(int priorityKey, String name, int age, String gpDetails, String ward, boolean haveAttended){
         //create an instance of PQElement to be added to q from incoming data 
         PQElement temp = new PQElement(priorityKey, name, age, gpDetails, ward, haveAttended);
         //use method to get the index the elem is to be added
@@ -53,12 +53,12 @@ public class PriorityQueueClass implements PQInterface{
     }
 
     @Override
-    public Object dequeue(){
+    public Object removePatient(){
        return thePQueue.remove(0);
     }
     
     @Override
-    public String printPQueue(){
+    public String printPatients(){
         PQElement temp;
         String txt = new String();
         for (int i = 0; i<thePQueue.size(); i++){
@@ -79,5 +79,9 @@ public class PriorityQueueClass implements PQInterface{
         }
          return txt;
     }
+        
+        public Object nextPatient(){
+            return thePQueue.get(0);
+        }
 
 }

@@ -4,21 +4,32 @@
  */
 package ca2dsa;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author paneq
  */
 public class BloodTestSchedulerGUI extends javax.swing.JFrame {    
     private final PriorityQueueClass pq;
+    private Queue notAttendedQueue = new Queue();
     
     public BloodTestSchedulerGUI() {
         initComponents();
         
         pq = new PriorityQueueClass();
-        pq.enqueue(7,"Felipe Paneque", 23, "Dr.Tomas Turbando", "NO", true);
-        pq.enqueue(10,"Murilo Batiuk",35, "Dr.Kelly Guissa", "YES", false);
-        pq.enqueue(2,"Stefany Junges",25, "Dr.Tolin Rabando", "YES", true);
-        pq.enqueue(5,"Filip Zielinsky",21, "Dr.Lana del rey", "NO", false);
+        pq.addPatient(7,"Felipe Paneque", 23, "Dr.Tomas Turbando", "NO", true);
+        pq.addPatient(10,"Murilo Batiuk",35, "Dr.Kelly Guissa", "YES", false);
+        pq.addPatient(2,"Stefany Junges",25, "Dr.Tolin Rabando", "YES", true); 
+        pq.addPatient(5,"Filip Zielinsky",21, "Dr.Lana del rey", "NO", false);
+        pq.addPatient(4,"John Luis", 33, "Dr.Tomas Turbando", "NO", true);
+        pq.addPatient(6,"Kyle Dodge",35, "Dr.Kelly Guissa", "YES", false);
+        pq.addPatient(2,"Hailey Bieber",25, "Dr.Tolin Rabando", "YES", true); 
+        pq.addPatient(1,"Michael Foive",21, "Dr.Lana del rey", "NO", false);
+        pq.addPatient(7,"Amanda DaSanta", 23, "Dr.Tomas Turbando", "NO", true);
+        pq.addPatient(10,"Trevor Philips ",55, "Dr.Kelly Guissa", "YES", false);
+        pq.addPatient(8,"Tracey DaSanta",25, "Dr.Tolin Rabando", "YES", true); 
+        pq.addPatient(9,"Franklin Clinton",23, "Dr.Lana del rey", "NO", false);
     }
 
     /**
@@ -67,8 +78,13 @@ public class BloodTestSchedulerGUI extends javax.swing.JFrame {
         jScrollPane1.setViewportView(displayTA);
 
         nextPatientBTN.setText("NEXT PATIENT");
+        nextPatientBTN.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nextPatientBTNActionPerformed(evt);
+            }
+        });
 
-        attendanceBTN.setText("ATTENDANCE ");
+        attendanceBTN.setText("PATIENTS THAT DID NOT SHOW UP");
         attendanceBTN.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 attendanceBTNActionPerformed(evt);
@@ -93,10 +109,11 @@ public class BloodTestSchedulerGUI extends javax.swing.JFrame {
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
                 .addGap(21, 21, 21)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(nextPatientBTN, javax.swing.GroupLayout.DEFAULT_SIZE, 151, Short.MAX_VALUE)
-                    .addComponent(attendanceBTN, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(patientsBTN, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(nextPatientBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(patientsBTN, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(attendanceBTN, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -104,11 +121,11 @@ public class BloodTestSchedulerGUI extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
+                .addComponent(patientsBTN)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(nextPatientBTN)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(attendanceBTN)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(patientsBTN)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -120,13 +137,36 @@ public class BloodTestSchedulerGUI extends javax.swing.JFrame {
 
     private void patientsBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_patientsBTNActionPerformed
         // TODO add your handling code here:
-        displayTA.setText(pq.printPQueue());
+        displayTA.setText(pq.printPatients());
     }//GEN-LAST:event_patientsBTNActionPerformed
 
     private void attendanceBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_attendanceBTNActionPerformed
         // TODO add your handling code here:
-       displayTA.setText(pq.haveAttended());
+        displayTA.setText(notAttendedQueue.toString());
+       
     }//GEN-LAST:event_attendanceBTNActionPerformed
+
+    private void nextPatientBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextPatientBTNActionPerformed
+        // TODO add your handling code here:
+        while (!pq.isEmpty()) { // Loop until no more patients
+            Object patient = pq.nextPatient(); // Store patient before checking attendance
+
+            int response = JOptionPane.showConfirmDialog(null,"Has the patient " + patient + " attended?", "Confirm Attendance", JOptionPane.YES_NO_OPTION);
+            //confirmDialog will return an int and not a boolean, 
+            //YES_OPTION will return a 0, making it a true,
+            //NO_OPTION will return a 1, making it a false.
+            boolean attended = (response == JOptionPane.YES_OPTION);
+
+            if (!attended) {
+                notAttendedQueue.enqueue(patient);
+            }
+
+            pq.removePatient(); // Remove patient regardless of attendance
+        }
+
+        JOptionPane.showMessageDialog(null, "No more patients waiting!");
+
+    }//GEN-LAST:event_nextPatientBTNActionPerformed
 
     /**
      * @param args the command line arguments
