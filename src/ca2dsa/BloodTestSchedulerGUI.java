@@ -7,17 +7,19 @@ package ca2dsa;
 import javax.swing.JOptionPane;
 
 /**
- *
- * @author paneq
+ * @author Felipe Paneque
+ * student number 23156635
+ * 14/03/2025
  */
-public class BloodTestSchedulerGUI extends javax.swing.JFrame {    
+public class BloodTestSchedulerGUI extends javax.swing.JFrame {  
+    //declare the 3 ADT's
     private final PriorityQueueClass pq;
     private Queue notAttendedQueue = new Queue();
     private SingleLinkedList attendedPatients = new SingleLinkedList();
     
     public BloodTestSchedulerGUI() {
         initComponents();
-        
+        //Adding patients to PQueue
         pq = new PriorityQueueClass();
         pq.addPatient(7,"Felipe Paneque", 23, "Dr.Tomas Turbando", "NO", true);
         pq.addPatient(10,"Murilo Batiuk",35, "Dr.Kelly Guissa", "YES", false);
@@ -170,10 +172,12 @@ public class BloodTestSchedulerGUI extends javax.swing.JFrame {
             //NO_OPTION will return a 1, making it a false.
             boolean attended = (response == JOptionPane.YES_OPTION);
             if (!attended) {
+                //if did not attend, go to 5 people Queue; 
                 notAttendedQueue.enqueue(patient);
             } else {
+                //if attended, go to LinkedList;
                 int index = attendedPatients.size() + 1;
-                attendedPatients.addPatient(index, patient); //add patient that have attended to the LinkedList
+                attendedPatients.addPatient(index, patient);
             }
             
             pq.removePatient(); // Remove patient from the priorityQueue regardless of attendance

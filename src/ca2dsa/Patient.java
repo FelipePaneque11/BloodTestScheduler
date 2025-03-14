@@ -6,17 +6,16 @@ package ca2dsa;
 
 /**
  *
- * @author paneq
+ * @author Felipe Paneque
+ * student number 23156635
+ * 14/03/2025
  */
 public class Patient {
     private int priority, age;
     private String name, gpDetails, ward;
     private boolean haveAttended;
 
-    public Patient() {
-    }
-
-    
+    //constructor
     public Patient(int priority, String name,int age, String gpDetails, String ward, boolean haveAttended) {
         this.priority = priority;
         this.name = name;
@@ -25,7 +24,8 @@ public class Patient {
         this.ward = ward;
         this.haveAttended = haveAttended;
     }
-
+    
+    //changing priority from 1-10 to low,medium, or urgent.
     public String getPriority() {
         if (priority >= 0 && priority <= 4) {
             return "Low";
@@ -79,7 +79,8 @@ public class Patient {
     public void setWard(String ward) {
         this.ward = ward;
     }
-
+    
+    //boolean to String;
     public String didPatientAttended() {
         if(haveAttended){
             return "YES";
@@ -99,7 +100,7 @@ public class Patient {
     
     public String getBriefDetails() {
     return "Name: " + name + ", Age: " + age + ",Comming from another ward: " + ward;
-}
+    }
 
     public boolean isHaveAttended() {
         return haveAttended;

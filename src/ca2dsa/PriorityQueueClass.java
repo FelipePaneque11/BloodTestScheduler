@@ -7,14 +7,15 @@ package ca2dsa;
 import java.util.ArrayList;
 
 /**
- *
- * @author paneq
+ * @author Felipe Paneque
+ * student number 23156635
+ * 14/03/2025
  */
 public class PriorityQueueClass implements PQInterface{
-    private ArrayList<Patient> thePQueue; //declare our priority Q arraylist
+    private ArrayList<Patient> thePQueue; //declare our PriorityQueue arraylist
     
     public PriorityQueueClass() {
-        thePQueue = new ArrayList<>();    //create our priority Q arraylist
+        thePQueue = new ArrayList<>();    //create our PriorityQueue arraylist
     } 
     
     @Override
@@ -58,17 +59,26 @@ public class PriorityQueueClass implements PQInterface{
     }
     
     @Override
-    public String printPatients(){
-        Patient temp;
-        String txt = new String();
-        for (int i = 0; i<thePQueue.size(); i++){
-            temp = thePQueue.get(i);
-            txt = txt.concat("Priority = "+temp.getPriority()+" | Name= "+temp.getName()+ " | GP details: " + temp.getGpDetails() + " | Coming from other ward ?: " + temp.getWard() + "| \n");            
+    public String printPatients() {
+        return printPatientsRecursively(0);
+    }
+
+    public String printPatientsRecursively(int index) {
+        if (index >= thePQueue.size()) {
+            return "";  // Base case: if we've reached the end of the list, return an empty string
         }
-         return txt;
+
+        // Get the current patient and create the output for this patient
+        Patient temp = thePQueue.get(index);
+        String currentDetails = "Priority = " + temp.getPriority() + " | Name= " + temp.getName()
+                + " | GP details: " + temp.getGpDetails()
+                + " | Coming from other ward ?: " + temp.getWard() + "\n";
+
+        // Recursive call for the next patient
+        return currentDetails + printPatientsRecursively(index + 1);
     }
     
-        public String haveAttended(){
+    public String haveAttended(){
         Patient temp;
         String txt = new String();
             for (int i = 0; i<thePQueue.size(); i++){
