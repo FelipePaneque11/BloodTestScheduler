@@ -13,6 +13,6 @@ public interface QueueInterface {
     public boolean isEmpty();
     public int size();
     public Object peek();
-    public void enqueue(Object element);
+    public void enqueue(Object patient);
     public Object dequeue();
 }

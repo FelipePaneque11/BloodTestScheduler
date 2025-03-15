@@ -21,18 +21,18 @@ public class BloodTestSchedulerGUI extends javax.swing.JFrame {
         initComponents();
         //Adding patients to PQueue
         pq = new PriorityQueueClass();
-        pq.addPatient(7,"Felipe Paneque", 23, "Dr.Tomas Turbando", "NO", true);
-        pq.addPatient(10,"Murilo Batiuk",35, "Dr.Kelly Guissa", "YES", false);
-        pq.addPatient(2,"Stefany Junges",25, "Dr.Tolin Rabando", "YES", true); 
+        pq.addPatient(7,"Felipe Paneque", 23, "Dr.John Travolta", "NO", true);
+        pq.addPatient(10,"Murilo Batiuk",35, "Dr.Axl Rose", "YES", false);
+        pq.addPatient(2,"Stefany Junges",25, "Dr.Michael Jackson", "YES", true); 
         pq.addPatient(5,"Filip Zielinsky",21, "Dr.Lana del rey", "NO", false);
-        pq.addPatient(4,"John Luis", 33, "Dr.Tomas Turbando", "NO", true);
-        pq.addPatient(6,"Kyle Dodge",35, "Dr.Kelly Guissa", "YES", false);
-        pq.addPatient(2,"Hailey Bieber",25, "Dr.Tolin Rabando", "YES", true); 
-        pq.addPatient(1,"Michael Foive",21, "Dr.Lana del rey", "NO", false);
-        pq.addPatient(7,"Amanda DaSanta", 23, "Dr.Tomas Turbando", "NO", true);
-        pq.addPatient(10,"Trevor Philips ",55, "Dr.Kelly Guissa", "YES", false);
-        pq.addPatient(8,"Tracey DaSanta",25, "Dr.Tolin Rabando", "YES", true); 
-        pq.addPatient(9,"Franklin Clinton",23, "Dr.Lana del rey", "NO", false);
+        pq.addPatient(4,"John Luis", 33, "Dr.Michelle Obama", "NO", true);
+        pq.addPatient(6,"Kyle Dodge",35, "Dr.Tom Brady", "YES", false);
+        pq.addPatient(2,"Hailey Bieber",25, "Dr.Neymar Jr", "YES", true); 
+        pq.addPatient(1,"Michael DaSanta",21, "Dr.Neil Armstrong", "NO", false);
+        pq.addPatient(7,"Amanda DaSanta", 23, "Dr.Paul Rudy", "NO", true);
+        pq.addPatient(10,"Trevor Philips ",55, "Dr. Tom Holland", "YES", false);
+        pq.addPatient(8,"Tracey DaSanta",25, "Dr. Winstom Churchill", "YES", true); 
+        pq.addPatient(9,"Franklin Clinton",23, "Dr.Freddie Mercury", "NO", false);
     }
 
     /**
@@ -51,7 +51,7 @@ public class BloodTestSchedulerGUI extends javax.swing.JFrame {
         nextPatientBTN = new javax.swing.JButton();
         attendanceBTN = new javax.swing.JButton();
         patientsBTN = new javax.swing.JButton();
-        shownPatientsBTN = new javax.swing.JButton();
+        shownSSLPatientsBTN = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -105,10 +105,10 @@ public class BloodTestSchedulerGUI extends javax.swing.JFrame {
             }
         });
 
-        shownPatientsBTN.setText("PATIENTS THAT SHOWED UP");
-        shownPatientsBTN.addActionListener(new java.awt.event.ActionListener() {
+        shownSSLPatientsBTN.setText("PATIENTS THAT SHOWED UP");
+        shownSSLPatientsBTN.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                shownPatientsBTNActionPerformed(evt);
+                shownSSLPatientsBTNActionPerformed(evt);
             }
         });
 
@@ -138,7 +138,7 @@ public class BloodTestSchedulerGUI extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(attendanceBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(shownPatientsBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(shownSSLPatientsBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(nextPatientBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(patientsBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -159,7 +159,7 @@ public class BloodTestSchedulerGUI extends javax.swing.JFrame {
                     .addComponent(jLabel2))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(shownPatientsBTN)
+                    .addComponent(shownSSLPatientsBTN)
                     .addComponent(jLabel3))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -207,10 +207,10 @@ public class BloodTestSchedulerGUI extends javax.swing.JFrame {
 
     }//GEN-LAST:event_nextPatientBTNActionPerformed
 
-    private void shownPatientsBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_shownPatientsBTNActionPerformed
+    private void shownSSLPatientsBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_shownSSLPatientsBTNActionPerformed
         // TODO add your handling code here:
         displayTA.setText(attendedPatients.printPatients());
-    }//GEN-LAST:event_shownPatientsBTNActionPerformed
+    }//GEN-LAST:event_shownSSLPatientsBTNActionPerformed
 
     /**
      * @param args the command line arguments
@@ -257,7 +257,7 @@ public class BloodTestSchedulerGUI extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton nextPatientBTN;
     private javax.swing.JButton patientsBTN;
-    private javax.swing.JButton shownPatientsBTN;
+    private javax.swing.JButton shownSSLPatientsBTN;
     private javax.swing.JLabel titleLBL;
     // End of variables declaration//GEN-END:variables
 }

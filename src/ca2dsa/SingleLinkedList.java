@@ -31,11 +31,12 @@ package ca2dsa;
         }
     }
     
+    @Override
     public int size(){
         return size;
     }
     
-    
+    @Override
     public void addPatient(int index, Object patient){
         //if adding at the beggining of the list(first index)
         if(index == 1){
@@ -67,6 +68,7 @@ package ca2dsa;
         }
     }
     
+    @Override
     public void removePatient(int index){
         // Removes the node at the specified index (starting at 1).
         if(index == 1){
@@ -81,6 +83,7 @@ package ca2dsa;
         size--; // decrease size
     }
     
+    @Override
     public String printPatients() {
         Node aNode = head;
         StringBuilder patientsList = new StringBuilder();  // StringBuilder to accumulate patient details
@@ -92,4 +95,6 @@ package ca2dsa;
 
         return patientsList.toString();  // Return the accumulated string
     }
+    
+    
 }
